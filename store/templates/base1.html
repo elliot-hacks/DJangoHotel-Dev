@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>home</title>
+        <style>
+        body{
+            margin:0px;
+            padding:0px;
+            background-image:url(static/index.jpg);
+            background-attachment:fixed;
+            background-size:cover;
+            }
+        .links{
+            border-radius:10px;
+            }
+            .links:hover{
+            background-color:yellowgreen;
+            }
+    
+    
+        </style>
+    </head>
+    <body bgcolor="silver">
+    <table border="2" width="100%">
+        <tr>
+            <td width="25%" align="center" bgcolor="#a0f312"><font color="white" class="links"><a
+                    href="{% url 'index' %}">HOME</a></font></td>
+            <td width="25%" align="center" bgcolor="#a0f312"><font color="white" class="links"><a
+                    href="{% url 'login' %}">LOGIN</a></font></td>
+            <td width="25%" align="center" bgcolor="#a0f312"><font color="white" class="links"><a
+                    href="{% url 'register' %}">SIGNUP</a></font></td>
+            <td width="25%" align="center" bgcolor="#a0f312"><font color="white" class="links"><a 
+                href="{% url 'about'%}">ABOUT US</a></font></td>
+    
+        </tr>
+    </table>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="form-box">
+                {% block content %}
+                {% endblock %}
+        </div>
+        </div>
+    </div>
+    <footer><h3>Copyright &copy; 2023</h3></footer>
+    </body>
+</html>

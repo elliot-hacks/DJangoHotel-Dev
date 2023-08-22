@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="form-box">
+                <h1 style="text-align:center;">Hotelini Login</h1>
+                {% if messages %}
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                <div class="wrapper">
+                    <div class="container-fluid">
+                        <div class="form-box" style="text-align:center;">
+                            <form method="post" action="" class="container-fluid" style ="position: relative;">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </br></br></br></br></br></br></br></br></br></br></br></br></br>
+{% endblock %}
+</html>

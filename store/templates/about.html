@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div id="about" class="tm-page-content">
+    <div class="tm-black-bg tm-mb-20 tm-about-box-1">              
+      <h2 class="tm-text-primary tm-about-header">About the Developer</h2>
+      <div class="tm-list-item tm-list-item-2">                
+        <img src="{% static 'admin.jpg' %}" alt="Image" class="tm-list-item-img tm-list-item-img-big">
+        <div class="tm-list-item-text-2">
+          <p>Made  by Elliot Nkwama</p>
+          <p>email: thisguyhack@gmail.com</p>
+          <p>You can also support my website services. Please tell your friends about us.</p>
+        </div>                
+      </div>
+    </div>
+    <div class="tm-black-bg tm-mb-20 tm-about-box-2">              
+      <div class="tm-list-item tm-list-item-2">                
+        <div class="tm-list-item-text-2">
+          <h2 class="tm-text-primary">How we began</h2>
+          <p>If you wish to support us, please contact Mr.Elliot. Also paypal contributions are allowed at <i>bcse004821@gmail.com</i>.</p>                  
+        </div>                
+        <img src="{% static 'adminer0.jpg'%}" alt="Image" class="tm-list-item-img tm-list-item-img-big tm-img-right">                
+      </div>
+      <p>In God we Trust</p>
+    </div>
+  </div>
+
+{% endblock %}

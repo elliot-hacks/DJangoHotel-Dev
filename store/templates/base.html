@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karibu Hoteli Yetu Arusha</title>
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/tooplate-wave-cafe.css' %}">
+</head>
+<body>
+  <div class="tm-container">
+    <div class="tm-row">
+      <!-- Site Header -->
+      <div class="tm-left">
+        <div class="tm-left-inner">
+          <div class="tm-site-header">
+            <i class="fas fa-coffee fa-3x tm-site-logo"></i>
+            <h1 class="tm-site-name">Chakula Safi na Bora</h1>
+          </div>
+          <nav class="tm-site-nav">
+            <ul class="tm-site-nav-ul">
+              <li class="tm-page-nav-item">
+                <a href="{% url 'login' %}" class="tm-page-link active">
+                  <i class="fas fa-mug-hot tm-page-link-icon"></i>
+                  <span>Login Panel</span>
+                </a>
+              </li>
+              <li class="tm-page-nav-item">
+                <a href="{% url 'register' %}" class="tm-page-link">
+                  <i class="fas fa-users tm-page-link-icon"></i>
+                  <span>Register to Our Site</span>
+                </a>
+              </li>
+              <li class="tm-page-nav-item">
+                <a href="/" class="tm-page-link">
+                  <i class="fas fa-glass-martini tm-page-link-icon"></i>
+                  <span>Home</span>
+                </a>
+              </li>
+              <li class="tm-page-nav-item">
+                <a href="{% url 'about' %}" class="tm-page-link">
+                  <i class="fas fa-users tm-page-link-icon"></i>
+                  <span>About Us</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>        
+      </div>
+      <div class="tm-right">
+        <main class="tm-main">
+          {% block content %}
+          {% endblock %}
+        </main>
+      </div>    
+    </div>
+    <footer class="tm-site-footer">
+      <p class="tm-black-bg tm-footer-text">Design: Programmed by Elliot Nkwama
+      |  <a href="mailto:thisguyhack@gmail.com" class="tm-footer-link" rel="sponsored" target="_parent">All rights reserved</a></p>
+    </footer>
+  </div>  
+  <!-- Background video -->
+  <div class="tm-video-wrapper">
+    <i id="tm-video-control-button" class="fas fa-pause"></i>
+    <video autoplay muted loop id="tm-video">
+      <source src="{% static 'video/wave-cafe-video-bg.mp4' %}" type="video/mp4">
+    </video>
+  </div>
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>    
+  <script>
+    function setVideoSize() {
+      const vidWidth = 1920;
+      const vidHeight = 1080;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const tempVidWidth = windowHeight * vidWidth / vidHeight;
+      const tempVidHeight = windowWidth * vidHeight / vidWidth;
+      const newVidWidth = tempVidWidth > windowWidth ? tempVidWidth : windowWidth;
+      const newVidHeight = tempVidHeight > windowHeight ? tempVidHeight : windowHeight;
+      const tmVideo = $('#tm-video');
+
+      tmVideo.css('width', newVidWidth);
+      tmVideo.css('height', newVidHeight);
+    }
+
+    function openTab(evt, id) {
+      $('.tm-tab-content').hide();
+      $('#' + id).show();
+      $('.tm-tab-link').removeClass('active');
+      $(evt.currentTarget).addClass('active');
+    }    
+
+    function initPage() {
+      let pageId = location.hash;
+
+      if(pageId) {
+        highlightMenu($(`.tm-page-link[href^="${pageId}"]`)); 
+        showPage($(pageId));
+      }
+      else {
+        pageId = $('.tm-page-link.active').attr('href');
+        showPage($(pageId));
+      }
+    }
+
+    function highlightMenu(menuItem) {
+      $('.tm-page-link').removeClass('active');
+      menuItem.addClass('active');
+    }
+
+    function showPage(page) {
+      $('.tm-page-content').hide();
+      page.show();
+    }
+
+    $(document).ready(function(){
+
+/***************** Pages *****************/
+
+initPage();
+
+$('.tm-page-link').click(function(event) {
+  
+  if(window.innerWidth > 991) {
+    event.preventDefault();
+  }
+
+  highlightMenu($(event.currentTarget));
+  showPage($(event.currentTarget.hash));
+});
+
+
+/***************** Tabs *******************/
+
+$('.tm-tab-link').on('click', e => {
+  e.preventDefault(); 
+  openTab(e, $(e.target).data('id'));
+});
+
+$('.tm-tab-link.active').click(); // Open default tab
+
+
+/************** Video background *********/
+
+setVideoSize();
+
+// Set video background size based on window size
+let timeout;
+window.onresize = function(){
+  clearTimeout(timeout);
+  timeout = setTimeout(setVideoSize, 100);
+};
+
+// Play/Pause button for video background      
+const btn = $("#tm-video-control-button");
+
+btn.on("click", function(e) {
+  const video = document.getElementById("tm-video");
+  $(this).removeClass();
+
+  if (video.paused) {
+    video.play();
+    $(this).addClass("fas fa-pause");
+  } else {
+    video.pause();
+    $(this).addClass("fas fa-play");
+  }
+});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="form-box">
+                <h1>Products</h1>
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col">
+                        <div class="card" style="width:400px">
+                        <div class="card-body">
+                        <img class="card-img-top" src="{{ product.images.url }}" width="300px" height="300px" alt="{{ product.name }} image">
+                        <p class="card-text">Asset Name: {{ product.collection.asset }}</p>
+                        <p class="card-text">Collection Name: {{ product.collection }}</p>
+                        <p class="card-title">Product Name: {{ product.name }}</p>
+                        <p class="card-text">Product Price: {{ product.price }}/Tsh</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}
