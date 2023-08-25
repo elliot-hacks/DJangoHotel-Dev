@@ -18,20 +18,20 @@ def index(request):
     return render(request, 'index.html', {'products': products, 'collections':collections})
 
 
-def register(request):
+def u_register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'You have been registered')
-            return redirect('home')
+            return redirect('login')
     else:
         form = UserCreationForm()
 
     return render(request, 'registration/register.html', {'form': form})
 
 
-def login(request):
+def u_login(request):
     return render(request, 'registration/login.html')
 
 
